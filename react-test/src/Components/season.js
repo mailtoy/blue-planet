@@ -21,7 +21,7 @@ class Season extends Component {
     render() {
         return (
 
-            <div>
+            <div style={{marginLeft: '120px', marginRight: '120px'}}>
                 <br />
                 <br />
                 <br />
