@@ -1,0 +1,23 @@
+.ant-slider-mark-text {
+    width: 100px;
+    height: 50x;
+    background-color: #6b799e;
+    -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+    animation-name: example;
+    animation-duration: 10s;
+    border-radius: 32px;
+  }
+  
+  /* Safari 4.0 - 8.0 */
+  @-webkit-keyframes example {
+    from {background-color: #181741;}
+    to {background-color: #6b799e;}
+  }
+  
+  /* Standard syntax */
+  @keyframes example {
+    from {background-color: #181741;}
+    to {background-color: #6b799e;}
+  }
+  
