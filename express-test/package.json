@@ -1,0 +1,10 @@
+{
+  "name": "express-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Kanchanok",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
