@@ -4,6 +4,9 @@ import './App.css';
 import Search from './Components/search';
 import Explore from './Pages/Explore';
 
+// import testing register
+import Register from './Components/register/register'
+
 class App extends Component {
   render() {
     return (
@@ -18,6 +21,8 @@ class App extends Component {
           <Route exact path="/" component={Search}/>
           <Route path="/explore" component={Explore}/>
         </Switch>
+
+        <Route path="/register" component={Register}/>
       </Router>
     );
   }

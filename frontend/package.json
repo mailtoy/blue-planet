@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "antd": "^3.16.2",
+    "axios": "^0.18.0",
     "country-list": "^2.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
