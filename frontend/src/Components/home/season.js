@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Radio, Card, Carousel } from 'antd';
-import '../css/season.css';
+import '../../css/season.css';
 
 const RadioGroup = Radio.Group;
 const { Meta } = Card;

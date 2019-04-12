@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Slider, Card, Carousel } from 'antd';
-import '../css/duration.css';
+import '../../css/duration.css'
 
 const { Meta } = Card;
 

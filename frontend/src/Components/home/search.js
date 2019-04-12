@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Select, DatePicker, Button } from 'antd';
 import countrylist from 'country-list';
-import Background from '../images/map.png';
+import Background from '../../images/map.png';
 
 
 const { MonthPicker } = DatePicker;

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import palm from '../images/palm-trees.svg';
-import pray from '../images/pray.svg';
-import world from '../images/world.svg';
-import mountain from '../images/mountain.svg';
+import palm from '../../images/palm-trees.svg';
+import pray from '../../images/pray.svg';
+import world from '../../images/world.svg';
+import mountain from '../../images/mountain.svg';
 
 class Themes extends Component {
 
