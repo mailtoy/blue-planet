@@ -1,79 +1,101 @@
 import React, { Component } from 'react';
-import {
-    Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete,
-} from 'antd';
-import axios from 'axios'
+import { Tooltip, Icon, Checkbox } from 'antd';
+import { Link, withRouter } from "react-router-dom";
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { registerUser } from '../../actions/authActions'
+import classnames from 'classnames'
 
-const { Option } = Select;
-
-export default class Register extends Component {
-    constructor(props) {
-        super(props)
-
+class Register extends Component {
+    constructor() {
+        super()
         this.state = {
             email: '',
             password: '',
-            confirmDirty: false,
-            autoCompleteResult: []
+            password2: '',
+            firstName: '',
+            lastName: '',
+            errors: {}
         }
-
-        this.onChangeEmail = this.onChangeEmail.bind(this)
-        this.onChangePassword = this.onChangePassword.bind(this)
-        this.onSubmit = this.onSubmit.bind(this);
     }
 
-    onChangeEmail(e) {
-        this.setState({
-            email: e.target.value
-        })
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
+            this.setState({
+                errors: nextProps.errors
+            });
+        }
     }
 
-    onChangePassword(e) {
-        this.setState({
-            password: e.target.value
-        })
+    componentDidMount() {
+        // If logged in and user navigates to Register page, should redirect them to dashboard
+        if (this.props.auth.isAuthenticated) {
+            this.props.history.push('/dashboard');
+        }
     }
 
-    onSubmit(e) {
+    onChange = e => {
+        this.setState({ [e.target.id]: e.target.value });
+    };
+
+    onSubmit = e => {
         e.preventDefault();
-
-        console.log(`Form submitted:`);
-        console.log(`Email: ${this.state.email}`)
-        console.log(`Password: ${this.state.password}`)
 
         const newUser = {
             email: this.state.email,
-            password: this.state.password
+            password: this.state.password,
+            password2: this.state.password2,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName
         }
 
-        axios.post('http://localhost:4000/user/register', newUser)
-            .then(res => console.log(res.data))
-
-        this.setState({
-            email: '',
-            password: ''
-        })
+        this.props.registerUser(newUser, this.props.history);
     }
 
     render() {
+        const { errors } = this.state;
         return (
             <div>
+                <Link to="/" className="btn-flat waves-effect">Back to home</Link>
+                <p>
+                    Already have an account?
+                    <Link to="/login">Log in</Link>
+                </p>
                 <h3>Register</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label>Email: </label>
+                        <span className="red-text">{errors.email}</span>
                         <input type="email"
-                            className="form-control"
+
+                            id="email"
+                            className={classnames("", { invalid: errors.email })}
                             value={this.state.email}
-                            onChange={this.onChangeEmail}
+                            onChange={this.onChange}
+                            error={errors.email}
+
                         />
                     </div>
                     <div className="form-group">
                         <label>Password: </label>
+                        <span className="red-text">{errors.password}</span>
                         <input type="password"
-                            className="form-control"
+                            id="password"
+                            className={classnames("", { invalid: errors.password })}
                             value={this.state.password}
-                            onChange={this.onChangePassword}
+                            onChange={this.onChange}
+                            error={errors.password}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Confirm Password: </label>
+                        <span className="red-text">{errors.password2}</span>
+                        <input type="password"
+                            id="password2"
+                            className={classnames("", { invalid: errors.password2 })}
+                            value={this.state.password2}
+                            onChange={this.onChange}
+                            error={errors.password2}
                         />
                     </div>
                     <div>
@@ -92,11 +114,53 @@ export default class Register extends Component {
                         <label> Phone number: </label>
                         <input type="phone" />
                     </div>
+
                     <div className="form-group">
-                        <input type="submit" value="Register new user" />
+                        <label>First name: </label>
+                        <span className="red-text">{errors.firstName}</span>
+                        <input type="text"
+                            id="firstName"
+                            className={classnames("", { invalid: errors.firstName })}
+                            value={this.state.firstName}
+                            onChange={this.onChange}
+                            error={errors.firstName}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Last name: </label>
+                        <span className="red-text">{errors.lastName}</span>
+                        <input type="text"
+                            id="lastName"
+                            className={classnames("", { invalid: errors.lastName })}
+                            value={this.state.lastName}
+                            onChange={this.onChange}
+                            error={errors.lastName}
+                        />
+                    </div>
+                    <div>
+                        <Checkbox>I have read the <a href="">agreement</a></Checkbox>
+                    </div>
+                    <div className="form-group">
+                        <input type="submit" value="Register" />
                     </div>
                 </form>
             </div>
         )
     }
 }
+
+Register.propTypes = {
+    registerUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+});
+
+export default connect(
+    mapStateToProps,
+    { registerUser }
+)(withRouter(Register));;
