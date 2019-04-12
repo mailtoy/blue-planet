@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import { Tooltip, Icon, Checkbox } from 'antd';
+import { Tooltip, Icon, Checkbox, Select } from 'antd';
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { registerUser } from '../../actions/authActions'
 import classnames from 'classnames'
+import countrylist from 'country-list';
+
+const Option = Select.Option;
 
 class Register extends Component {
     constructor() {
@@ -15,8 +18,17 @@ class Register extends Component {
             password2: '',
             firstName: '',
             lastName: '',
-            errors: {}
+            errors: {},
+            country: '',
         }
+        this.handleChange = this.handleChange.bind(this)
+        
+    }
+
+    handleChange(value) {
+        this.setState({
+            country: value
+        })
     }
 
     componentWillReceiveProps(nextProps) {
@@ -107,8 +119,19 @@ class Register extends Component {
                         <input type="username" />
                     </div>
                     <div>
+                    <label> Country: </label>
+                    <Select
+                        showSearch
+                        style={{ width: 200 }}
+                        placeholder="Select a country"
+                        optionFilterProp="children"
+                        onChange={this.handleChange}
+                    >
+                        {countrylist.getNames().map(name => <Option key={name} value={name}>{name}</Option>)}
+
+                    </Select>
                         <label> Habitual Residence: </label>
-                        <input type="residence" />
+                        <input type="residence"  style={{ width: 400 }} />
                     </div>
                     <div>
                         <label> Phone number: </label>
