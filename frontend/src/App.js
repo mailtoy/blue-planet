@@ -10,12 +10,6 @@ import Register from './Components/register/register'
 class App extends Component {
   render() {
     return (
-      // <div className="App">
-      //   <Search />
-      //   <Area />
-      //   <Season />
-      //   <Themes />
-      // </div>
       <Router>
         <Switch>
           <Route exact path="/" component={Search}/>

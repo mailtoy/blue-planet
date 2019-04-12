@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
+import {
+    Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete,
+} from 'antd';
 import axios from 'axios'
+
+const { Option } = Select;
 
 export default class Register extends Component {
     constructor(props) {
@@ -7,7 +12,9 @@ export default class Register extends Component {
 
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            confirmDirty: false,
+            autoCompleteResult: []
         }
 
         this.onChangeEmail = this.onChangeEmail.bind(this)
@@ -56,10 +63,10 @@ export default class Register extends Component {
                     <div className="form-group">
                         <label>Email: </label>
                         <input type="email"
-                                className="form-control"
-                                value={this.state.email}
-                                onChange={this.onChangeEmail}
-                                />
+                            className="form-control"
+                            value={this.state.email}
+                            onChange={this.onChangeEmail}
+                        />
                     </div>
                     <div className="form-group">
                         <label>Password: </label>
@@ -67,7 +74,23 @@ export default class Register extends Component {
                             className="form-control"
                             value={this.state.password}
                             onChange={this.onChangePassword}
-                            />
+                        />
+                    </div>
+                    <div>
+                        <label> Username </label>
+                        <Tooltip title="What do you want others to call you?">
+                            <Icon type="question-circle-o" />
+                        </Tooltip>
+                        :&nbsp;
+                        <input type="username" />
+                    </div>
+                    <div>
+                        <label> Habitual Residence: </label>
+                        <input type="residence" />
+                    </div>
+                    <div>
+                        <label> Phone number: </label>
+                        <input type="phone" />
                     </div>
                     <div className="form-group">
                         <input type="submit" value="Register new user" />
