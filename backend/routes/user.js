@@ -37,8 +37,12 @@ router.post('/register', (req, res) => {
         const newUser = new User({
             email: req.body.email,
             password: req.body.password,
+            username: req.body.username,
             firstName: req.body.firstName,
-            lastName: req.body.lastName
+            lastName: req.body.lastName,
+            residence: req.body.residence,
+            // country: req.body.country,
+            phoneNumber: req.body.phoneNumber
         });
 
         // Hash password before saving in database
@@ -73,7 +77,7 @@ router.post('/login', (req, res) => {
         // Check if user exists
         if (!user) {
             return res.status(404).json({ emailnotfound: "Email not found" });
-    }
+        }
         
         // Check password
         bcrypt.compare(password, user.password).then(isMatch => {

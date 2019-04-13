@@ -16,13 +16,15 @@ class Register extends Component {
             email: '',
             password: '',
             password2: '',
+            username: '',
             firstName: '',
             lastName: '',
-            errors: {},
+            residence: '',
             country: '',
+            phoneNumber: '',
+            errors: {}
         }
         this.handleChange = this.handleChange.bind(this)
-        
     }
 
     handleChange(value) {
@@ -57,8 +59,12 @@ class Register extends Component {
             email: this.state.email,
             password: this.state.password,
             password2: this.state.password2,
+            username: this.state.username,
             firstName: this.state.firstName,
-            lastName: this.state.lastName
+            lastName: this.state.lastName,
+            residence: this.state.residence,
+            country: this.state.country,
+            phoneNumber: this.state.phoneNumber
         }
 
         this.props.registerUser(newUser, this.props.history);
@@ -110,34 +116,21 @@ class Register extends Component {
                             error={errors.password2}
                         />
                     </div>
-                    <div>
-                        <label> Username </label>
+                    <div className="form-group">
+                        <label>Username </label>
+                        <span className="red-text">{errors.username}</span>
                         <Tooltip title="What do you want others to call you?">
                             <Icon type="question-circle-o" />
                         </Tooltip>
                         :&nbsp;
-                        <input type="username" />
+                        <input type="text" 
+                            id="username"
+                            className={classnames("", { invalid: errors.username })}
+                            value={this.state.username}
+                            onChange={this.onChange}
+                            error={errors.username}
+                        />
                     </div>
-                    <div>
-                    <label> Country: </label>
-                    <Select
-                        showSearch
-                        style={{ width: 200 }}
-                        placeholder="Select a country"
-                        optionFilterProp="children"
-                        onChange={this.handleChange}
-                    >
-                        {countrylist.getNames().map(name => <Option key={name} value={name}>{name}</Option>)}
-
-                    </Select>
-                        <label> Habitual Residence: </label>
-                        <input type="residence"  style={{ width: 400 }} />
-                    </div>
-                    <div>
-                        <label> Phone number: </label>
-                        <input type="phone" />
-                    </div>
-
                     <div className="form-group">
                         <label>First name: </label>
                         <span className="red-text">{errors.firstName}</span>
@@ -158,6 +151,51 @@ class Register extends Component {
                             value={this.state.lastName}
                             onChange={this.onChange}
                             error={errors.lastName}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Habitual Residence: </label>
+                        <span className="red-text">{errors.residence}</span>
+                        <input style={{ width: 400 }}
+                            type="text"
+                            id="residence"
+                            className={classnames("", { invalid: errors.residence })}
+                            value={this.state.residence}
+                            onChange={this.onChange}
+                            error={errors.residence}
+                        />
+                    </div>
+                    {/* <div className="form-group">
+                        <label>Country: </label>
+                        <Select
+                            showSearch
+                            style={{ width: 200 }}
+                            placeholder="Select a country"
+                            optionFilterProp="children"
+                            onChange={this.handleChange}
+                        >
+                            {countrylist.getNames().map(name => 
+                                <Option key={name}
+                                    type="text"
+                                    id="country"
+                                    className={classnames("", { invalid: errors.country })}
+                                    value={this.state.country}
+                                    onChange={this.onChange}
+                                    error={errors.country}
+                                    >{name}</Option>
+                            )}
+                        </Select>
+                        <span className="red-text">{errors.country}</span>
+                    </div> */}
+                    <div className="form-group">
+                        <label>Phone number: </label>
+                        <span className="red-text">{errors.phoneNumber}</span>
+                        <input type="tel"
+                            id="phoneNumber"
+                            className={classnames("", { invalid: errors.phoneNumber })}
+                            value={this.state.phoneNumber}
+                            onChange={this.onChange}
+                            error={errors.phoneNumber}
                         />
                     </div>
                     <div>

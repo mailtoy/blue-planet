@@ -11,12 +11,30 @@ var userSchema = new Schema({
         type: String,
         required: true
     },
+    username: {
+        type: String,
+        unique: true,
+        required: true
+    },
     firstName: {
         type: String,
         required: true
     },
     lastName: {
         type: String,
+        required: true
+    },
+    residence: {
+        type: String,
+        required: true
+    },
+    // country: {
+    //     type: String,
+    //     required: true
+    // },
+    phoneNumber: {
+        type: Number,
+        unique: true,
         required: true
     },
 })
