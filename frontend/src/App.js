@@ -10,11 +10,6 @@ import Login from './Components/login/login'
 import Dashboard from './Components/dashboard/dashboard'
 import PrivateRoute from './Components/private-route/privateRoute';
 
-// authen
-import jwt_decode from 'jwt-decode';
-import setAuthToken from './utils/setAuthToken';
-import { setCurrentUser, logoutUser } from './actions/authActions';
-
 class App extends Component {
   render() {
     return (
