@@ -20,7 +20,7 @@ class Register extends Component {
             firstName: '',
             lastName: '',
             residence: '',
-            country: '',
+            // country: '',
             phoneNumber: '',
             errors: {}
         }
@@ -63,10 +63,9 @@ class Register extends Component {
             firstName: this.state.firstName,
             lastName: this.state.lastName,
             residence: this.state.residence,
-            country: this.state.country,
+            // country: this.state.country,
             phoneNumber: this.state.phoneNumber
         }
-
         this.props.registerUser(newUser, this.props.history);
     }
 
