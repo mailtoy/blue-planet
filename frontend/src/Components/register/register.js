@@ -22,7 +22,6 @@ class Register extends Component {
             country: '',
         }
         this.handleChange = this.handleChange.bind(this)
-        
     }
 
     handleChange(value) {
