@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { registerUser } from '../../actions/authActions'
 import classnames from 'classnames'
 import countrylist from 'country-list';
+import '../../css/register.css';
 
 const Option = Select.Option;
 
@@ -76,7 +77,7 @@ class Register extends Component {
                 <Link to="/" className="btn-flat waves-effect">Back to home</Link>
                 <p>
                     Already have an account?
-                    <Link to="/login">Log in</Link>
+                    <Link to="/login">&nbsp;Log in</Link>
                 </p>
                 <h3>Register</h3>
                 <form onSubmit={this.onSubmit}>

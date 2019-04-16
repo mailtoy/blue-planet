@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/authActions';
 import classnames from 'classnames';
+import Searchmini from '../../Components/home/minisearch';
 
 class Login extends Component {
     constructor(props) {
@@ -53,6 +54,8 @@ class Login extends Component {
         const { errors } = this.state;
         return (
             <div>
+                <Searchmini />
+
                 <Link to="/" className="btn-flat waves-effect">Back to home</Link>
                 <p>
                     Don't have an account?
