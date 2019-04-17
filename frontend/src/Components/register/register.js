@@ -7,6 +7,7 @@ import { registerUser } from '../../actions/authActions'
 import classnames from 'classnames'
 import countrylist from 'country-list';
 import '../../css/register.css';
+import Searchmini from '../../Components/home/minisearch';
 
 const Option = Select.Option;
 
@@ -74,6 +75,7 @@ class Register extends Component {
         const { errors } = this.state;
         return (
             <div>
+                <Searchmini />
                 <Link to="/" className="btn-flat waves-effect">Back to home</Link>
                 <p>
                     Already have an account?

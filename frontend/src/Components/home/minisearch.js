@@ -51,8 +51,8 @@ class Searchmini extends Component {
                     >
                         {countrylist.getNames().map(name => <Option key={name} value={name}>{name}</Option>)}
 
-                    </Select>
-                    <MonthPicker placeholder="Select month" onChange={this.onChange} value={this.state.month} />
+                    </Select> &nbsp;&nbsp;
+                    <MonthPicker placeholder="Select month" onChange={this.onChange} value={this.state.month} />&nbsp;&nbsp;
 
                     <Button icon="search" onClick={this.onClick} style={{ background: '#E26740', color: '#FFFFFF' }}>Explore</Button>
                 </div>
