@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Slider, Card, Carousel } from 'antd';
 import '../../css/duration.css'
+import axios from 'axios';
 
 const { Meta } = Card;
 
@@ -40,6 +41,15 @@ const marks = {
 class Duration extends Component {
     state = {
         value: 1,
+        data: [],
+    }
+
+    componentDidMount() {
+        axios
+            .get('/explores')
+            .then(result => this.setState({
+                data: result.data
+            }))
     }
 
     onChange = (e) => {
